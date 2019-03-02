@@ -38,6 +38,8 @@ func saveImage(url string, wg *sync.WaitGroup) {
 	fmt.Println("Downloaded images from ", url)
 
 	urlSlice := strings.Split(url, "/")
+	os.MkdirAll("images", os.ModePerm)
+
 	file, err := os.Create("images/" + urlSlice[len(urlSlice)-1] + ".jpg")
 	handleError(err)
 	defer file.Close()
